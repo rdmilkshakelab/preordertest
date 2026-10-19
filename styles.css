@@ -1,687 +1,661 @@
-:root {
-  --bg: #07111f;
-  --bg-2: #0d1827;
-  --panel: rgba(11, 20, 35, 0.88);
-  --panel-strong: rgba(17, 29, 47, 0.96);
-  --line: rgba(148, 163, 184, 0.18);
-  --text: #edf5ff;
-  --muted: #a7b7ce;
-  --accent: #7c9eff;
-  --danger: #ff6d6d;
-  --warning: #ffca6b;
-  --success: #7ae4af;
-  --shadow: 0 18px 48px rgba(6, 10, 22, 0.5);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  margin: 0;
-  min-height: 100%;
-  font-family: "Inter", sans-serif;
-  background: radial-gradient(circle at top, #0d1b2a 0%, var(--bg) 38%, #050b14 100%);
-  color: var(--text);
-}
-
-body {
-  position: relative;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-button {
-  font: inherit;
-}
-
-.background-glow {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.2;
-  pointer-events: none;
-}
-
-.glow-one {
-  width: 420px;
-  height: 420px;
-  background: rgba(124, 158, 255, 0.9);
-  top: 4%;
-  left: 5%;
-}
-
-.glow-two {
-  width: 380px;
-  height: 380px;
-  background: rgba(82, 220, 173, 0.7);
-  right: 8%;
-  bottom: 7%;
-}
-
-.app-shell {
-  position: relative;
-  width: min(1200px, calc(100% - 32px));
-  margin: 0 auto;
-  padding: 28px 0 48px;
-  z-index: 1;
-}
-
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 20px 24px;
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  background: rgba(8, 15, 25, 0.62);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--shadow);
-}
-
-.eyebrow {
-  margin: 0 0 6px;
-  letter-spacing: 0.2em;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--muted);
-}
-
-h1 {
-  margin: 0;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  letter-spacing: -0.06em;
-}
-
-.status-pill {
-  border: 1px solid rgba(122, 228, 175, 0.3);
-  border-radius: 999px;
-  padding: 8px 12px;
-  background: rgba(122, 228, 175, 0.08);
-  color: var(--success);
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
-#app {
-  margin-top: 28px;
-}
-
-.menu-layout {
-  display: grid;
-  gap: 18px;
-}
-
-.hero-panel {
-  display: grid;
-  grid-template-columns: 1.5fr 0.9fr;
-  gap: 18px;
-  padding: 18px 20px;
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  background: rgba(9, 17, 28, 0.82);
-  box-shadow: var(--shadow);
-}
-
-.hero-copy {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.hero-copy h2 {
-  margin: 0 0 14px;
-  font-size: clamp(2rem, 4vw, 4rem);
-  letter-spacing: -0.08em;
-  line-height: 0.95;
-}
-
-.hero-copy p {
-  margin: 0;
-  color: var(--muted);
-  max-width: 62ch;
-  line-height: 1.6;
-}
-
-.hero-metrics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.metric-box {
-  flex: 1 1 120px;
-  padding: 14px 16px;
-  border-radius: 16px;
-  background: rgba(18, 32, 52, 0.8);
-  border: 1px solid var(--line);
-}
-
-.metric-label {
-  color: var(--muted);
-  font-size: 0.76rem;
-  display: block;
-  margin-bottom: 6px;
-}
-
-.metric-value {
-  font-weight: 800;
-  font-size: 1.3rem;
-}
-
-.terminal-preview {
-  min-height: 250px;
-  border-radius: 20px;
-  border: 1px solid rgba(124, 158, 255, 0.25);
-  background: linear-gradient(180deg, rgba(16, 27, 41, 0.95), rgba(8, 15, 26, 0.92));
-  padding: 18px;
-}
-
-.preview-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 18px;
-}
-
-.preview-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.preview-dot.red { background: #ff6d6d; }
-.preview-dot.yellow { background: #ffca6b; }
-.preview-dot.green { background: #7ae4af; }
-
-.preview-window {
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.02);
-  padding: 16px;
-}
-
-.preview-window h3 {
-  margin: 0 0 8px;
-  font-size: 1rem;
-}
-
-.preview-window p {
-  margin: 0 0 12px;
-  color: var(--muted);
-}
-
-.preview-lines {
-  display: grid;
-  gap: 10px;
-}
-
-.preview-line {
-  height: 8px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(124, 158, 255, 0.8), rgba(255, 255, 255, 0.12));
-}
-
-.preview-line.short {
-  width: 62%;
-}
-
-.preview-line.tiny {
-  width: 40%;
-}
-
-.scenario-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(220px, 1fr));
-  gap: 18px;
-  margin-top: 18px;
-}
-
-.scenario-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-height: 280px;
-  border-radius: 22px;
-  padding: 18px 18px 16px;
-  border: 1px solid var(--line);
-  background: rgba(9, 17, 27, 0.9);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
-
-.scenario-card::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto auto 0;
-  width: 100%;
-  height: 5px;
-  background: var(--card-accent, var(--accent));
-}
-
-.card-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.brand-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 1.1rem;
-  font-weight: 900;
-  letter-spacing: -0.05em;
-}
-
-.card-head span:last-child {
-  color: var(--muted);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.scenario-card h3 {
-  margin: 20px 0 10px;
-  font-size: 1.7rem;
-  letter-spacing: -0.05em;
-}
-
-.scenario-card p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.5;
-}
-
-.scenario-meta {
-  display: grid;
-  gap: 10px;
-  margin-top: 18px;
-  padding: 12px 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.meta-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  font-size: 0.84rem;
-}
-
-.meta-row span:first-child {
-  color: var(--muted);
-}
-
-.meta-row strong {
-  font-size: 0.88rem;
-}
-
-.scenario-card button {
-  margin-top: auto;
-  border: 0;
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-weight: 800;
-  color: white;
-  background: linear-gradient(135deg, var(--card-accent, var(--accent)), rgba(255, 255, 255, 0.18));
-  cursor: pointer;
-  transition: transform 0.2s ease, filter 0.2s ease;
-}
-
-.scenario-card button:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.08);
-}
-
-.run-screen {
-  display: grid;
-  gap: 18px;
-}
-
-.brand-shell {
-  border-radius: 26px;
-  border: 1px solid var(--line);
-  background: rgba(9, 17, 28, 0.9);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
-
-.brand-topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 18px 20px;
-  background: linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-}
-
-.brand-left {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.brand-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 54px;
-  height: 54px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.04);
-  font-weight: 900;
-  font-size: 1.1rem;
-}
-
-.brand-hud {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--muted);
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.pill {
-  padding: 8px 11px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: rgba(255,255,255,0.03);
-}
-
-.brand-stage {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 18px;
-  padding: 18px 20px 20px;
-}
-
-.product-card {
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: rgba(255,255,255,0.02);
-  padding: 18px;
-}
-
-.product-card h2 {
-  margin: 0 0 10px;
-  font-size: clamp(1.6rem, 3vw, 2.6rem);
-  letter-spacing: -0.06em;
-}
-
-.product-card p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.product-visual {
-  display: grid;
-  place-items: center;
-  min-height: 220px;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-  font-size: clamp(2.8rem, 5vw, 5rem);
-  font-weight: 900;
-  letter-spacing: -0.08em;
-  color: rgba(255,255,255,0.8);
-}
-
-.scoreboard {
-  display: grid;
-  gap: 12px;
-}
-
-.score-box {
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 14px 15px;
-  background: rgba(255,255,255,0.02);
-}
-
-.score-box .label {
-  display: block;
-  color: var(--muted);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.score-box strong {
-  display: block;
-  margin-top: 8px;
-  font-size: clamp(1.3rem, 3vw, 2rem);
-}
-
-.progress-wrap {
-  display: grid;
-  gap: 12px;
-  border-radius: 22px;
-  border: 1px solid var(--line);
-  background: rgba(9, 17, 28, 0.9);
-  padding: 18px 20px;
-}
-
-.progress-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  font-size: 0.8rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
-.progress-bar {
-  width: 100%;
-  height: 12px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.07);
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.05);
-}
-
-.progress-fill {
-  height: 100%;
-  width: 0%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--brand-accent), rgba(255,255,255,0.2));
-  transition: width 0.25s ease;
-}
-
-.step-panel {
-  border-radius: 22px;
-  border: 1px solid var(--line);
-  background: rgba(9, 17, 28, 0.9);
-  padding: 20px;
-}
-
-.step-panel h3 {
-  margin: 0 0 8px;
-  font-size: clamp(1.4rem, 2vw, 2rem);
-  letter-spacing: -0.04em;
-}
-
-.step-panel p {
-  margin: 0 0 18px;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.option-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
-}
-
-.action-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  min-height: 96px;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 14px 16px;
-  background: rgba(255,255,255,0.02);
-  color: var(--text);
-  text-align: left;
-  cursor: pointer;
-  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
-}
-
-.action-btn:hover {
-  transform: translateY(-1px);
-  border-color: rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.04);
-}
-
-.action-btn small {
-  color: var(--muted);
-  font-size: 0.74rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.action-btn strong {
-  font-size: 1rem;
-}
-
-.issue-modal {
-  margin-top: 18px;
-  border: 1px solid rgba(255, 109, 109, 0.35);
-  border-radius: 18px;
-  background: rgba(255, 109, 109, 0.08);
-  padding: 18px;
-}
-
-.issue-modal h4 {
-  margin: 0 0 8px;
-  color: #ffb0b0;
-  font-size: 1rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.issue-modal p {
-  color: #ffd7d7;
-  margin: 0 0 16px;
-}
-
-.issue-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.secondary-btn,
-.primary-btn,
-.restart-btn {
-  border: 0;
-  border-radius: 12px;
-  padding: 11px 16px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.primary-btn {
-  background: linear-gradient(135deg, var(--brand-accent), rgba(255,255,255,0.18));
-  color: white;
-}
-
-.secondary-btn {
-  background: rgba(255,255,255,0.06);
-  color: var(--text);
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.restart-btn {
-  background: linear-gradient(135deg, #7c9eff, #4fe0c3);
-  color: white;
-}
-
-.result-screen {
-  display: grid;
-  place-items: center;
-  min-height: 60vh;
-}
-
-.result-card {
-  width: min(720px, 100%);
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  background: rgba(9, 17, 28, 0.92);
-  box-shadow: var(--shadow);
-  padding: 24px;
-}
-
-.result-card h2 {
-  margin: 0 0 20px;
-  font-size: clamp(2rem, 4vw, 3.3rem);
-  letter-spacing: -0.06em;
-}
-
-.result-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(140px, 1fr));
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.result-grid .score-box {
-  min-height: 110px;
-}
-
-.result-card p {
-  margin: 0 0 18px;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.result-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-@media (max-width: 980px) {
-  .hero-panel,
-  .brand-stage,
-  .scenario-grid {
-    grid-template-columns: 1fr;
+const scenarios = {
+  apple: {
+    id: 'apple',
+    name: 'Apple',
+    badge: 'A',
+    accent: '#7c9eff',
+    product: 'iPhone 16 Pro Max',
+    price: '$1,199',
+    emoji: '📱',
+    variant: 'Natural Titanium',
+    storage: '256 GB',
+    summary: 'Official reserve terminal for the latest flagship.',
+    colors: ['Natural Titanium', 'Black Titanium', 'White Titanium', 'Blue Titanium'],
+    storages: ['128 GB', '256 GB', '512 GB', '1 TB'],
+    issues: [
+      { title: 'Apple ID session expired', description: 'Your sign-in token hit a wall and the preorder terminal is requesting a fresh verification flow.', fix: 'Refresh account session' },
+      { title: 'Payment gateway hiccup', description: 'The bank handoff failed during the wallet check. The system is asking for a clean retry.', fix: 'Retry payment' },
+      { title: 'Bot verification triggered', description: 'The terminal flagged suspicious activity and dropped you into a short fraud check.', fix: 'Complete verification' }
+    ],
+    steps: [
+      { title: 'Human verification', prompt: 'Pass the security gate. The terminal is checking for a real person.' },
+      { title: 'Memory check', prompt: 'Remember the card suffix and passphrase before the lane resets.' },
+      { title: 'Confirm finish', prompt: 'Pick the exact finish that matches the secure order token.' },
+      { title: 'Confirm storage', prompt: 'Select the exact storage tier attached to this reservation.' },
+      { title: 'Final checkout', prompt: 'Lock in the full order before the queue collapses.' }
+    ]
+  },
+  nintendo: {
+    id: 'nintendo',
+    name: 'Nintendo',
+    badge: 'N',
+    accent: '#ff4d4d',
+    product: 'Nintendo Switch 2',
+    price: '$449',
+    emoji: '🎮',
+    variant: 'Mario Red',
+    storage: 'Standard Edition',
+    summary: 'High-demand hardware reservation flow with stricter queue checks.',
+    colors: ['Mario Red', 'Dark Blue', 'Neon Yellow', 'Pearl White'],
+    storages: ['Standard', 'Bundle', 'Pro Edition', 'Collector Edition'],
+    issues: [
+      { title: 'Login session timeout', description: 'The Nintendo Account session timed out during the reservation handshake.', fix: 'Refresh account check' },
+      { title: 'Inventory hold expired', description: 'The retail pool was briefly capped and the stock slot vanished before finalization.', fix: 'Reclaim inventory slot' },
+      { title: 'Bot shield triggered', description: 'The system is demanding a visual challenge step before it will process your queue request.', fix: 'Solve challenge' }
+    ],
+    steps: [
+      { title: 'Human verification', prompt: 'Your account is under anti-bot review. Complete the captcha inside the terminal.' },
+      { title: 'Memory check', prompt: 'Remember the last four digits and the generated passphrase exactly.' },
+      { title: 'Confirm finish', prompt: 'Choose the correct hardware colour for this reservation.' },
+      { title: 'Confirm storage', prompt: 'Pick the exact configuration tied to the queue token.' },
+      { title: 'Final checkout', prompt: 'Submit the reservation before the server resets the queue.' }
+    ]
+  },
+  playstation: {
+    id: 'playstation',
+    name: 'PlayStation',
+    badge: 'PS',
+    accent: '#5ea5ff',
+    product: 'PlayStation 5 Pro',
+    price: '$799',
+    emoji: '🕹️',
+    variant: 'Midnight Black',
+    storage: '2 TB',
+    summary: 'Console launch queue with fake stock pressure, bot checks, and payment retries.',
+    colors: ['Midnight Black', 'Nova White', 'Galactic Silver', 'Deep Blue'],
+    storages: ['1 TB', '2 TB', '4 TB', 'Custom bundle'],
+    issues: [
+      { title: 'Account verification failed', description: 'Your PlayStation Network session is stale and the queue needs a new handshake.', fix: 'Verify account' },
+      { title: 'Payment authorization timeout', description: 'The payment terminal stalled while the card processor checked your billing details.', fix: 'Retry card auth' },
+      { title: 'Queue anti-bot check', description: 'The load balancer suspecting automated activity triggered a challenge step before checkout.', fix: 'Complete anti-bot check' }
+    ],
+    steps: [
+      { title: 'Human verification', prompt: 'The queue is being checked by the anti-bot gate.' },
+      { title: 'Memory check', prompt: 'The card suffix and passphrase must be repeated exactly.' },
+      { title: 'Confirm finish', prompt: 'Choose the matching console colour.' },
+      { title: 'Confirm storage', prompt: 'Match the storage variant to the reservation token.' },
+      { title: 'Final checkout', prompt: 'Before the terminal times out, lock in the order.' }
+    ]
+  },
+  xbox: {
+    id: 'xbox',
+    name: 'Xbox',
+    badge: 'X',
+    accent: '#4adf9d',
+    product: 'Xbox Series X',
+    price: '$599',
+    emoji: '🟢',
+    variant: 'Carbon Black',
+    storage: '1 TB',
+    summary: 'Fast queue lane with fake stock pressure, bot checks, and payment retries.',
+    colors: ['Carbon Black', 'Velocity Green', 'Robot White', 'Electric Blue'],
+    storages: ['512 GB', '1 TB', '2 TB', 'Launch bundle'],
+    issues: [
+      { title: 'Microsoft account sign-in issue', description: 'The account token was interrupted while the queue system was validating your reservation status.', fix: 'Refresh identity' },
+      { title: 'Card processing failure', description: 'The payment path returned a decline and the checkout page requires a fresh auth roundtrip.', fix: 'Retry auth' },
+      { title: 'Bot shield challenge', description: 'The queue check identified suspicious activity and is asking for a quick confirmation.', fix: 'Solve anti-bot challenge' }
+    ],
+    steps: [
+      { title: 'Human verification', prompt: 'The certification layer needs a fresh CAPTCHA pass.' },
+      { title: 'Memory check', prompt: 'The card suffix and passphrase are both required to continue.' },
+      { title: 'Confirm finish', prompt: 'Select the exact hardware finish tied to your order.' },
+      { title: 'Confirm storage', prompt: 'Storage must be precise. One wrong value crashes the lane.' },
+      { title: 'Final checkout', prompt: 'Submit the reservation before the queue self-resets.' }
+    ]
+  }
+};
+
+const bestTimesKey = 'preorderScrimBestTimes';
+const app = document.getElementById('app');
+
+const state = {
+  screen: 'menu',
+  scenarioId: null,
+  scenario: null,
+  session: null,
+  stepIndex: 0,
+  timerStart: 0,
+  elapsedMs: 0,
+  errors: 0,
+  challenge: null,
+  interval: null,
+  captchaSolved: false,
+  captchaTiles: [],
+  bestTimes: JSON.parse(localStorage.getItem(bestTimesKey) || '{}')
+};
+
+function makePassword(length = 12) {
+  const chars = 'ABCDEFGHJKLMNPRSTUVWXYZ23456789!@#$%^&*';
+  let value = '';
+  for (let i = 0; i < length; i += 1) {
+    value += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return value;
+}
+
+function randomDigitString(length = 4) {
+  let result = '';
+  for (let i = 0; i < length; i += 1) {
+    result += String(Math.floor(Math.random() * 10));
+  }
+  return result;
+}
+
+function createCaptchaTiles(scenario) {
+  const target = scenario.emoji;
+  const tiles = [];
+  const targetCount = 4;
+  const symbols = [target, '💳', '✦', '🔒', '⚡', '🧩'];
+
+  for (let i = 0; i < 9; i += 1) {
+    const value = i < targetCount ? target : symbols[Math.floor(Math.random() * symbols.length)];
+    tiles.push({ id: i, value, active: false, correct: i < targetCount });
   }
 
-  .scenario-grid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  return tiles;
+}
+
+function generateSession(scenario) {
+  return {
+    password: makePassword(),
+    cardLast4: randomDigitString(4),
+    correctColor: scenario.colors[Math.floor(Math.random() * scenario.colors.length)],
+    correctStorage: scenario.storages[Math.floor(Math.random() * scenario.storages.length)],
+    captchaTiles: createCaptchaTiles(scenario),
+    captchaText: 'Select all squares with the icon shown below',
+    targetIcon: scenario.emoji
+  };
+}
+
+function timeLabel(ms) {
+  const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  const centis = Math.floor((ms % 1000) / 10);
+  return `${minutes}:${String(seconds).padStart(2, '0')}.${String(centis).padStart(2, '0')}`;
+}
+
+function getScenarioById(id) {
+  return scenarios[id] || scenarios.apple;
+}
+
+function startTimer() {
+  if (state.interval) {
+    clearInterval(state.interval);
+  }
+
+  state.timerStart = Date.now();
+  state.elapsedMs = 0;
+  state.interval = setInterval(() => {
+    state.elapsedMs = Date.now() - state.timerStart;
+    if (state.screen === 'run') {
+      updateLiveStats();
+    }
+  }, 100);
+}
+
+function updateLiveStats() {
+  const elapsedEl = document.getElementById('elapsed-time');
+  const scoreEl = document.getElementById('score');
+  if (elapsedEl) {
+    elapsedEl.textContent = timeLabel(state.elapsedMs);
+  }
+  if (scoreEl) {
+    const score = Math.max(0, 2200 - Math.floor(state.elapsedMs / 80) - state.errors * 180);
+    scoreEl.textContent = `${score}`;
   }
 }
 
-@media (max-width: 640px) {
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+function renderMenu() {
+  state.screen = 'menu';
+  app.innerHTML = `
+    <section class="menu-layout">
+      <div class="hero-panel">
+        <div class="hero-copy">
+          <h2>Beat the queue.<br />Break the bots.</h2>
+          <p>
+            This is a sandbox preorder speed test with real-looking security barriers: hidden card digits,
+            generated passphrases, anti-bot checks, and exact finish + storage matching. Nothing is actual money or real authentication.
+          </p>
+          <div class="hero-metrics">
+            <div class="metric-box">
+              <span class="metric-label">Scenarios</span>
+              <span class="metric-value">4</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Hard mode</span>
+              <span class="metric-value">Memory + CAPTCHA</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-label">Mode</span>
+              <span class="metric-value">Sandbox</span>
+            </div>
+          </div>
+        </div>
+        <div class="terminal-preview">
+          <div class="preview-bar">
+            <span class="preview-dot red"></span>
+            <span class="preview-dot yellow"></span>
+            <span class="preview-dot green"></span>
+          </div>
+          <div class="preview-window">
+            <h3>Security state</h3>
+            <p>Captcha active • Card memory required • Password lock enabled.</p>
+            <div class="preview-lines">
+              <div class="preview-line"></div>
+              <div class="preview-line short"></div>
+              <div class="preview-line tiny"></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  .brand-topbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+      <div class="scenario-grid">
+        ${Object.values(scenarios).map((scenario) => `
+          <article class="scenario-card" style="--card-accent:${scenario.accent};">
+            <div class="card-head">
+              <div class="brand-badge">${scenario.badge}</div>
+              <span>${scenario.name}</span>
+            </div>
+            <h3>${scenario.product}</h3>
+            <p>${scenario.summary}</p>
+            <div class="scenario-meta">
+              <div class="meta-row"><span>Price</span><strong>${scenario.price}</strong></div>
+              <div class="meta-row"><span>Colors</span><strong>${scenario.colors.length}</strong></div>
+              <div class="meta-row"><span>Storage</span><strong>${scenario.storages.length}</strong></div>
+            </div>
+            <button data-scenario="${scenario.id}" type="button">Start hard run</button>
+          </article>
+        `).join('')}
+      </div>
+    </section>
+  `;
 
-  .result-grid {
-    grid-template-columns: 1fr;
+  document.querySelectorAll('[data-scenario]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const id = button.dataset.scenario;
+      startScenario(id);
+    });
+  });
+}
+
+function startScenario(id) {
+  state.scenarioId = id;
+  state.scenario = getScenarioById(id);
+  state.session = generateSession(state.scenario);
+  state.stepIndex = 0;
+  state.errors = 0;
+  state.challenge = null;
+  state.captchaSolved = false;
+  state.captchaTiles = state.session.captchaTiles;
+  state.elapsedMs = 0;
+  startTimer();
+  renderRun();
+}
+
+function toggleCaptchaTile(index) {
+  const tiles = [...state.captchaTiles];
+  tiles[index].active = !tiles[index].active;
+  state.captchaTiles = tiles;
+
+  const activeCount = tiles.filter((tile) => tile.active).length;
+  const correctCount = tiles.filter((tile) => tile.correct).length;
+
+  if (activeCount === correctCount && tiles.every((tile) => !tile.correct || tile.active)) {
+    state.captchaSolved = true;
+    renderRun();
   }
 }
+
+function triggerFailure(message, onRetry = null) {
+  state.challenge = {
+    title: 'Security error',
+    description: message,
+    fix: 'Retry secure lane'
+  };
+
+  state.errors += 1;
+  if (onRetry) {
+    onRetry();
+  }
+  renderRun();
+}
+
+function renderRun() {
+  state.screen = 'run';
+  const scenario = state.scenario;
+  const session = state.session;
+  const currentStep = scenario.steps[state.stepIndex];
+  const score = Math.max(0, 2200 - Math.floor(state.elapsedMs / 80) - state.errors * 180);
+  const progress = ((state.stepIndex + 1) / scenario.steps.length) * 100;
+
+  let bodyHtml = '';
+
+  if (state.stepIndex === 0) {
+    bodyHtml = `
+      <div class="captcha-panel">
+        <p class="captcha-label">Captcha</p>
+        <div class="captcha-target">${session.targetIcon}</div>
+        <p class="captcha-hint">${session.captchaText}</p>
+        <div class="captcha-grid">
+          ${state.captchaTiles.map((tile, index) => `
+            <button
+              type="button"
+              class="captcha-tile ${tile.active ? 'selected' : ''}"
+              data-captcha-tile="${index}"
+              aria-label="Captcha tile ${index + 1}"
+            >${tile.value}</button>
+          `).join('')}
+        </div>
+      </div>
+      <div class="cta-row">
+        <button class="primary-btn" type="button" data-scan-captcha="1" ${state.captchaSolved ? '' : 'disabled'}>
+          Confirm CAPTCHA
+        </button>
+      </div>
+    `;
+  } else if (state.stepIndex === 1) {
+    bodyHtml = `
+      <div class="memory-panel">
+        <div class="memory-header">
+          <div>
+            <span class="muted-label">Last 4 digits</span>
+            <p>Remember the number exactly.</p>
+          </div>
+          <div class="memory-badge">${session.cardLast4}</div>
+        </div>
+
+        <label class="field-label" for="card-last4">Re-enter last 4 digits</label>
+        <input id="card-last4" class="security-input" maxlength="4" inputmode="numeric" placeholder="1234" />
+
+        <div class="passphrase-wrap">
+          <div class="passphrase-top">
+            <span class="muted-label">Password</span>
+            <button class="mini-btn" type="button" data-copy-password="1">Copy password</button>
+          </div>
+          <input id="password-vault" class="security-input" readonly value="${session.password}" />
+          <input id="password-input" class="security-input" type="text" placeholder="Paste the generated password exactly" />
+        </div>
+      </div>
+      <div class="cta-row">
+        <button class="primary-btn" type="button" data-verify-memory="1">Verify memory lock</button>
+      </div>
+    `;
+  } else if (state.stepIndex === 2) {
+    bodyHtml = `
+      <div class="choice-panel">
+        <p class="muted-label">Colour match</p>
+        <p class="choice-copy">The secure reservation is tied to one exact finish. Choose correctly.</p>
+        <div class="option-grid">
+          ${scenario.colors.map((option) => `
+            <button class="action-btn" data-color-choice="${option}" type="button">
+              <small>Finish</small>
+              <strong>${option}</strong>
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  } else if (state.stepIndex === 3) {
+    bodyHtml = `
+      <div class="choice-panel">
+        <p class="muted-label">Storage match</p>
+        <p class="choice-copy">The order token includes one storage tier only. Wrong tier voids the lane.</p>
+        <div class="option-grid">
+          ${scenario.storages.map((option) => `
+            <button class="action-btn" data-storage-choice="${option}" type="button">
+              <small>Capacity</small>
+              <strong>${option}</strong>
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  } else {
+    bodyHtml = `
+      <div class="final-panel">
+        <div class="summary-block">
+          <span class="muted-label">Final review</span>
+          <h4>${scenario.product}</h4>
+          <ul>
+            <li>Finish: ${session.correctColor}</li>
+            <li>Storage: ${session.correctStorage}</li>
+            <li>Card suffix: ${session.cardLast4}</li>
+            <li>Passphrase: ${session.password}</li>
+          </ul>
+        </div>
+        <div class="cta-row">
+          <button class="primary-btn" type="button" data-finalize="1">Finalize preorder</button>
+        </div>
+      </div>
+    `;
+  }
+
+  app.innerHTML = `
+    <section class="run-screen">
+      <div class="brand-shell" style="--brand-accent:${scenario.accent};">
+        <div class="brand-topbar" style="background: linear-gradient(90deg, ${scenario.accent}22, rgba(255,255,255,0.01));">
+          <div class="brand-left">
+            <div class="brand-mark" style="background:${scenario.accent}18; border-color:${scenario.accent}44;">${scenario.badge}</div>
+            <div>
+              <div style="font-weight:800; font-size:1.1rem; letter-spacing:-0.03em;">${scenario.name}</div>
+              <div style="color: var(--muted); font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase;">Hard mode checkout</div>
+            </div>
+          </div>
+          <div class="brand-hud">
+            <span class="pill">Queue live</span>
+            <span class="pill">${scenario.price}</span>
+          </div>
+        </div>
+
+        <div class="brand-stage">
+          <div class="product-card">
+            <h2>${scenario.product}</h2>
+            <p>${scenario.summary}</p>
+            <div style="margin-top:18px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; color: var(--muted); font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase;">
+              <span>${scenario.variant}</span>
+              <span>${scenario.storage}</span>
+            </div>
+          </div>
+
+          <div class="scoreboard">
+            <div class="score-box">
+              <span class="label">Elapsed</span>
+              <strong id="elapsed-time">${timeLabel(state.elapsedMs)}</strong>
+            </div>
+            <div class="score-box">
+              <span class="label">Score</span>
+              <strong id="score">${score}</strong>
+            </div>
+            <div class="score-box">
+              <span class="label">Errors</span>
+              <strong>${state.errors}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-header">
+          <span>Preorder progress</span>
+          <span>${Math.min(state.stepIndex + 1, scenario.steps.length)} / ${scenario.steps.length}</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:${Math.min(progress, 100)}%; background: linear-gradient(90deg, ${scenario.accent}, rgba(255,255,255,0.3));"></div>
+        </div>
+      </div>
+
+      <div class="step-panel">
+        <h3>${currentStep.title}</h3>
+        <p>${currentStep.prompt}</p>
+        ${bodyHtml}
+
+        ${state.challenge ? `
+          <div class="issue-modal">
+            <h4>Security block</h4>
+            <p><strong>${state.challenge.title}</strong><br>${state.challenge.description}</p>
+            <div class="issue-actions">
+              <button class="primary-btn" data-dismiss-challenge="1" type="button">Retry secure lane</button>
+            </div>
+          </div>
+        ` : ''}
+      </div>
+    </section>
+  `;
+
+  attachRunHandlers();
+  updateLiveStats();
+}
+
+function attachRunHandlers() {
+  document.querySelectorAll('[data-captcha-tile]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const index = Number(button.dataset.captchaTile);
+      toggleCaptchaTile(index);
+    });
+  });
+
+  document.querySelectorAll('[data-scan-captcha]').forEach((button) => {
+    button.addEventListener('click', () => {
+      if (!state.captchaSolved) {
+        triggerFailure('You did not complete the CAPTCHA correctly. The terminal still suspects automation.');
+        return;
+      }
+      advanceStep();
+    });
+  });
+
+  document.querySelectorAll('[data-copy-password]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(state.session.password);
+        button.textContent = 'Copied';
+        setTimeout(() => {
+          button.textContent = 'Copy password';
+        }, 1200);
+      } catch (error) {
+        document.getElementById('password-input').value = state.session.password;
+      }
+    });
+  });
+
+  document.querySelectorAll('[data-verify-memory]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const cardInput = document.getElementById('card-last4')?.value || '';
+      const passwordInput = document.getElementById('password-input')?.value || '';
+      const cardMatch = cardInput.trim() === state.session.cardLast4;
+      const passwordMatch = passwordInput.trim() === state.session.password;
+
+      if (!cardMatch || !passwordMatch) {
+        triggerFailure('The card suffix or generated password did not match. The checkout queue rejected the attempt.');
+        return;
+      }
+
+      advanceStep();
+    });
+  });
+
+  document.querySelectorAll('[data-color-choice]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const selected = button.dataset.colorChoice;
+      if (selected !== state.session.correctColor) {
+        triggerFailure('Incorrect finish selection. The order token did not match this option.');
+        return;
+      }
+      advanceStep();
+    });
+  });
+
+  document.querySelectorAll('[data-storage-choice]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const selected = button.dataset.storageChoice;
+      if (selected !== state.session.correctStorage) {
+        triggerFailure('Incorrect storage selection. The secure reservation was tied to a different tier.');
+        return;
+      }
+      advanceStep();
+    });
+  });
+
+  document.querySelectorAll('[data-finalize]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const chance = Math.random();
+      if (chance < 0.55) {
+        triggerFailure('The terminal failed the final payment authorization. Your lane is being reset by the anti-fraud system.');
+        return;
+      }
+
+      finishRun();
+    });
+  });
+
+  document.querySelectorAll('[data-dismiss-challenge]').forEach((button) => {
+    button.addEventListener('click', () => {
+      state.challenge = null;
+      renderRun();
+    });
+  });
+}
+
+function advanceStep() {
+  if (state.stepIndex >= state.scenario.steps.length - 1) {
+    finishRun();
+    return;
+  }
+
+  state.stepIndex += 1;
+  if (state.stepIndex === 0) {
+    state.captchaSolved = false;
+    state.captchaTiles = createCaptchaTiles(state.scenario);
+  }
+  renderRun();
+}
+
+function finishRun() {
+  if (state.interval) {
+    clearInterval(state.interval);
+  }
+
+  const score = Math.max(0, 2200 - Math.floor(state.elapsedMs / 80) - state.errors * 180);
+  const scenario = state.scenario;
+  const previousBest = state.bestTimes[scenario.id];
+
+  if (!previousBest || state.elapsedMs < previousBest) {
+    state.bestTimes[scenario.id] = state.elapsedMs;
+    localStorage.setItem(bestTimesKey, JSON.stringify(state.bestTimes));
+  }
+
+  app.innerHTML = `
+    <section class="result-screen">
+      <div class="result-card">
+        <h2>Queue complete.</h2>
+        <div class="result-grid">
+          <div class="score-box">
+            <span class="label">Time</span>
+            <strong>${timeLabel(state.elapsedMs)}</strong>
+          </div>
+          <div class="score-box">
+            <span class="label">Score</span>
+            <strong>${score}</strong>
+          </div>
+          <div class="score-box">
+            <span class="label">Best</span>
+            <strong>${timeLabel(state.bestTimes[scenario.id] ?? state.elapsedMs)}</strong>
+          </div>
+        </div>
+        <p>
+          You survived the hard-mode fake preorder terminal. The checkout forced CAPTCHA, memory tests, and exact finish/storage validation. Nothing was actually purchased.
+        </p>
+        <div class="result-actions">
+          <button class="restart-btn" type="button" data-back="menu">Pick another scenario</button>
+        </div>
+      </div>
+    </section>
+  `;
+
+  document.querySelectorAll('[data-back]').forEach((button) => {
+    button.addEventListener('click', renderMenu);
+  });
+}
+
+renderMenu();
